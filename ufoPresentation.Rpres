@@ -1,0 +1,56 @@
+UFO Database Explorer: Developing Data Products Project (Couresera)
+========================================================
+author: Max K. Goff
+date: 26 September 2015
+title: Developing Data Products (Coursera)
+UFO Database Explorer
+========================================================
+
+This presentation was produced as part of the peer assessment phase for the final project in the Couresera course *Developing Data Products* -- which is a core component of the Johns Hopkins Data Science certification set of courses.
+
+The assignment ensures students comprehend specific concepts covered in the course:
+
+- [shiny](http://shiny.org) to build and publish data product applications.
+- [RPresentation](http://rpresentation.com) or [slidify](http://slidify.org) to create online presentations as a facet of data prdocuts.
+
+
+The Application
+========================================================
+A simple application called the UFO Database Explorer was built to demonstrate **shiny** capabilities.  Selecting input dates for data examination, users are able to reivew:
+
+- Time series of UFO sightings 
+- Distribution of sightings by Month, faceted by the type or Shape of the UFO
+- Distribution of sightings by Hour of day, facted by Shape 
+
+
+The Data
+========================================================
+The application also provides the user with a display of the data used.  Scraping the web site and processing the data for analysis takes time.  The code for ingestion and tidying of the data is available in the githup repository.  The application makes use of ingested, pre-processed data with code like the following:
+```{r, eval=FALSE}
+cnt = readRDS('data/UFOSightings.Rda')
+    cnt[1:3,]
+```
+Producing output like the following:
+```{r, echo=FALSE}
+cnt = readRDS('data/UFOSightings.Rda')
+    cnt[1:3,]
+```
+The Visuals
+========================================================
+Since the middle of the 20th century, UFO sightings have steadily increased.  For example, from 2000 through 2015, the output depicts a steady rise of sightings:
+```{r, echo=FALSE}
+library(ggplot2)
+ data = readRDS('data/UFOSightings.Rda')
+    
+    from = as.Date("2000-01-15")
+    to = as.Date("2015-09-15")
+    grp = subset(data, DATE > from & DATE < to)
+    av = round(ave(grp$SIGHTINGS),2)
+    av_p = as.character(av[1])
+     message=paste("   Ave Sightings/Month: ", av_p, sep="")
+    ggplot(grp, aes(x=DATE,y=SIGHTINGS)) + 
+      geom_line(aes(y=SIGHTINGS, colour="Num Sightings")) + 
+      stat_smooth(aes(y=SIGHTINGS, colour="Trend")) +
+      scale_color_manual(values=c("Trend"="blue", "Num Sightings"="red"))  +
+      annotate(geom="text", x=as.Date(from+((to-from)/2)), y=-100, label=message)
+```
