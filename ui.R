@@ -1,3 +1,5 @@
+require(markdown)
+library(markdown)
 library(shiny)
 
 shinyUI(

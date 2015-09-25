@@ -10,18 +10,19 @@ This presentation was produced as part of the peer assessment phase for the fina
 
 The assignment ensures students comprehend specific concepts covered in the course:
 
-- [shiny](http://shiny.org) to build and publish data product applications.
-- [RPresentation](http://rpresentation.com) or [slidify](http://slidify.org) to create online presentations as a facet of data prdocuts.
+- [shiny](http://shiny.rstudio.com/r) to build and publish data product applications.
+- [RPresentation](https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations) or [slidify](http://slidify.org) to create online presentations as a facet of data prdocuts.
 
 
 The Application
 ========================================================
-A simple application called the UFO Database Explorer was built to demonstrate **shiny** capabilities.  Selecting input dates for data examination, users are able to reivew:
+A simple application called the [UFO Database Explorer (click here)](https://maxgoff.shinyapps.io/DevDataProducts) was built to demonstrate **shiny** capabilities.  Selecting input dates for data examination, users are able to reivew:
 
 - Time series of UFO sightings 
 - Distribution of sightings by Month, faceted by the type or Shape of the UFO
 - Distribution of sightings by Hour of day, facted by Shape 
 
+Data Source: [The National UFO Reporting Center](http://www.nuforc.org)
 
 The Data
 ========================================================

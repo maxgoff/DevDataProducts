@@ -4,6 +4,8 @@ library(quantmod)
 library(ggplot2)
 library(reshape2)
 library(dygraphs)
+ 
+library(plyr)
 #source("helpers.R")
 
 shinyServer(function(input, output) {
@@ -39,7 +41,7 @@ shinyServer(function(input, output) {
     to = input$dates[2]
     
     grp2 = subset(cnt, DATE > from & DATE < to)
-    grpType = count(grp2$SHAPE)
+   # grpType = count(grp2$SHAPE)
     grpType=grp2
    # colnames(grpType)[1] = "SHAPE"
   #  colnames(grpType)[2] = "Frequency"
@@ -60,7 +62,7 @@ shinyServer(function(input, output) {
     
     grp3 = subset(cnt, DATE > from & DATE < to)
     
-    grpType = count(grp3$HOUR)
+    #grpType = count(grp3$HOUR)
     grpType = grp3
   #  colnames(grpType)[1] = "Hour"
   #  colnames(grpType)[2] = "Frequency"
