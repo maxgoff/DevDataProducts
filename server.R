@@ -3,10 +3,9 @@
 library(quantmod)
 library(ggplot2)
 library(reshape2)
-#library(dygraphs)
+ 
  
 library(plyr)
-#source("helpers.R")
 
 shinyServer(function(input, output, session) {
    
@@ -48,17 +47,13 @@ shinyServer(function(input, output, session) {
     to = input$dates[2]
     
     grp2 = subset(cnt, DATE > from & DATE < to)
-   # grpType = count(grp2$SHAPE)
+    
     grpType=grp2
-   # colnames(grpType)[1] = "SHAPE"
-  #  colnames(grpType)[2] = "Frequency"
+  
     grpType$MONTH <- as.integer(grpType$MONTH)
   ggplot(grpType, aes(MONTH, fill=SHAPE)) + geom_bar(binwidth=diff(range(grpType$MONTH))/30) +
     scale_x_continuous(breaks=1:12)
-   # ggplot(grpType, aes(x=SHAPE, y=Frequency)) + geom_bar(stat="identity")
-   # ggplot(grpType, aes(MONTH, fill=SHAPE)) + 
-    #  geom_bar(data=grpType, stat="identity", binwidth=0.75) +
-    #  scale_x_continuous(breaks=1:12)
+   
   })
   output$timeOfDay <- renderPlot({
     
@@ -69,12 +64,11 @@ shinyServer(function(input, output, session) {
     
     grp3 = subset(cnt, DATE > from & DATE < to)
     
-    #grpType = count(grp3$HOUR)
+   
     grpType = grp3
-  #  colnames(grpType)[1] = "Hour"
-  #  colnames(grpType)[2] = "Frequency"
+  
     ggplot(grpType, aes(x=HOUR, fill=SHAPE)) + geom_bar()
-   # ggplot(grpType, aes(x=Hour, y=Frequency, fill=SHAPE)) + geom_bar(stat="identity") 
+ 
   })
   
   output$table1 = renderDataTable({

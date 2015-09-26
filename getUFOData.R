@@ -1,3 +1,5 @@
+# To run this code I suggest you step through the first several lines.  The cleanDat() function can be run
+# as such but the remainder of the code should be stepped through via RStudio.
 library(XML)
 baseUrl <-"http://www.nuforc.org/webreports/"
 ulist <- paste(baseUrl, "ndxpost.html", sep="")
@@ -37,30 +39,6 @@ ggp + geom_line() + geom_smooth()
 
 saveRDS(cntR, "data/UFOSightings.Rda")
 
-
-# get geocodes
-#library(RCurl)
-#library(RJSONIO)
-
-#construct.geocode.url <- function(address, return.call = "json", sensor = "false") {
-#  root <- "http://maps.google.com/maps/api/geocode/"
-#  u <- paste(root, return.call, "?address=", address, "&sensor=", sensor, sep = "")
-#  return(URLencode(u))
-#}
-
-#gGeoCode <- function(address,verbose=FALSE) {
-#  if(verbose) cat(address,"\n")
-#  u <- construct.geocode.url(address)
-#  doc <- getURL(u)
-#  x <- fromJSON(doc,simplify = FALSE)
-#  if(x$status=="OK") {
-#    lat <- x$results[[1]]$geometry$location$lat
-#    lng <- x$results[[1]]$geometry$location$lng
-#    return(c(lat, lng))
-#  } else {
-#    return(c(NA,NA))
-#  }
-#}
 
 cleanData <- function(data=cnt) {
     cnt = readRDS("data/ufoDataALL.Rda")
