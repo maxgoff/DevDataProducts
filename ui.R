@@ -18,6 +18,19 @@ shinyUI(
         end = as.character(Sys.Date())),
       
       br(),
+      fluidRow(helpText("The current Date Range:"), column(12, verbatimTextOutput("value"))),
+      br(),
+      
+      fluidRow(
+         # checkboxGroupInput("Test1", "Test1", choices=c("display")),
+        #  checkboxGroupInput("Test2", "Test2", choices=c("1","2","3"), selected="2"),
+        #  numericInput("n", "N:", value=NA),
+         # actionButton("goButton", label="SHAPE Table"),
+          #p("Click the button to display the SHAPE table"),
+         # verbatimTextOutput("nText")
+         imageOutput("shapeTable")
+        
+      ),
       br()
     
     ),

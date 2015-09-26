@@ -3,13 +3,19 @@
 library(quantmod)
 library(ggplot2)
 library(reshape2)
-library(dygraphs)
+#library(dygraphs)
  
 library(plyr)
 #source("helpers.R")
 
-shinyServer(function(input, output) {
-  
+shinyServer(function(input, output, session) {
+   
+     output$shapeTable <- renderImage ({
+         input$goButton
+        isolate({
+         return(list(src="images/shapesTable.PNG", contentType="image/png", alt="Shapes Table"))  })
+     }, deleteFile=FALSE)
+    
   output$timeseriesplot <- renderPlot ({
     
  
@@ -33,6 +39,7 @@ shinyServer(function(input, output) {
    
   })
   
+  output$value <- renderPrint({ input$dates })
   output$shapeHistogram <- renderPlot({
     
     cnt = readRDS('data/UFOdata.Rda')
